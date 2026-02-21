@@ -5,7 +5,9 @@ services:
     plan: free
     envVars:
       - key: PORT
-        value: "42617"   # <--- Change this line!
+        value: "42617"
+      - key: ZEROCLAW_GATEWAY_REQUIRE_PAIRING
+        value: "false"
       - key: GEMINI_API_KEY
         sync: false
       - key: TELEGRAM_BOT_TOKEN

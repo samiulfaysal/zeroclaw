@@ -6,8 +6,12 @@ services:
     envVars:
       - key: PORT
         value: "42617"
-      - key: ZEROCLAW_GATEWAY_REQUIRE_PAIRING
+      - key: ZEROCLAW_GATEWAY__REQUIRE_PAIRING  # <-- Notice the DOUBLE underscore here!
         value: "false"
+      - key: ZEROCLAW_DEFAULT_PROVIDER
+        value: "google"
+      - key: ZEROCLAW_DEFAULT_MODEL
+        value: "gemini-2.0-flash"
       - key: GEMINI_API_KEY
         sync: false
       - key: TELEGRAM_BOT_TOKEN

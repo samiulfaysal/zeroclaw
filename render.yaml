@@ -3,6 +3,7 @@ services:
     name: zeroclaw-assistant
     runtime: docker
     plan: free
+    dockerCommand: "zeroclaw gateway --port 8080"
     envVars:
       - key: PORT
         value: "8080"

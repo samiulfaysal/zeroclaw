@@ -42,7 +42,7 @@ services:
       - key: ZEROCLAW_RELIABILITY_BACKOFF_MS
         value: "1000"
 
-      # --- Telegram Integration ---
+      # --- Telegram Integration --
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: ZEROCLAW_CHANNELS_TELEGRAM_ENABLED

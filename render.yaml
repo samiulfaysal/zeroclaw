@@ -5,7 +5,7 @@ services:
     plan: free
     envVars:
       - key: PORT
-        value: "8000"  # Changed from 8080
+        value: "8080"  # Changed from 8080
       - key: ZEROCLAW_GATEWAY_PORT
         value: "8080"  # Changed from 8081
       # ... rest of your config

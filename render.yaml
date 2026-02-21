@@ -3,12 +3,12 @@ services:
     name: zeroclaw-assistant
     runtime: docker
     plan: free
-    envVars:  # ✅ Indented under the service
-      # --- Networking ---
+    envVars:
       - key: PORT
-        value: "8080"
+        value: "8000"  # Changed from 8080
       - key: ZEROCLAW_GATEWAY_PORT
-        value: "8081"
+        value: "8080"  # Changed from 8081
+      # ... rest of your config
       - key: ZEROCLAW_GATEWAY_ALLOW_PUBLIC_BIND
         value: "true"
 

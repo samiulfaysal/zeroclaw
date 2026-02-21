@@ -4,17 +4,28 @@ services:
     runtime: docker
     plan: free
     envVars:
+      # --- Network & Port Binding ---
       - key: PORT
-        value: "42617"
-      - key: ZEROCLAW_GATEWAY__REQUIRE_PAIRING  # <-- Notice the DOUBLE underscore here!
+        value: "8080"
+      - key: ZEROCLAW_GATEWAY_PORT
+        value: "8080"
+      - key: ZEROCLAW_ALLOW_PUBLIC_BIND
+        value: "true"
+
+      # --- Security & UI ---
+      - key: ZEROCLAW_GATEWAY_REQUIRE_PAIRING
         value: "false"
-      - key: ZEROCLAW_DEFAULT_PROVIDER
+      - key: HOME
+        value: "/zeroclaw-data"
+
+      # --- AI Provider ---
+      - key: PROVIDER
         value: "google"
-      - key: ZEROCLAW_DEFAULT_MODEL
+      - key: ZEROCLAW_MODEL
         value: "gemini-2.0-flash"
-      - key: GEMINI_API_KEY
+      - key: ZEROCLAW_API_KEY
         sync: false
+        
+      # --- Integrations ---
       - key: TELEGRAM_BOT_TOKEN
         sync: false
-      - key: HOME
-        value: "/tmp/zeroclaw-data"

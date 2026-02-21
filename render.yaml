@@ -4,28 +4,28 @@ services:
     runtime: docker
     plan: free
     envVars:
-      # --- Network & Port Binding ---
+      # --- Networking (Docs: gateway.port / allow_public_bind) ---
       - key: PORT
         value: "8080"
       - key: ZEROCLAW_GATEWAY_PORT
         value: "8080"
-      - key: ZEROCLAW_ALLOW_PUBLIC_BIND
+      - key: ZEROCLAW_GATEWAY_ALLOW_PUBLIC_BIND
         value: "true"
 
-      # --- Security & UI ---
+      # --- Security (Docs: gateway.require_pairing) ---
       - key: ZEROCLAW_GATEWAY_REQUIRE_PAIRING
         value: "false"
       - key: HOME
         value: "/zeroclaw-data"
 
-      # --- AI Provider ---
-      - key: PROVIDER
+      # --- AI Provider (Docs: default_provider / default_model) ---
+      - key: ZEROCLAW_DEFAULT_PROVIDER
         value: "google"
-      - key: ZEROCLAW_MODEL
+      - key: ZEROCLAW_DEFAULT_MODEL
         value: "gemini-2.0-flash"
       - key: ZEROCLAW_API_KEY
         sync: false
         
-      # --- Integrations ---
+      # --- Telegram Integration ---
       - key: TELEGRAM_BOT_TOKEN
         sync: false

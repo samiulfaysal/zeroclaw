@@ -4,46 +4,38 @@ services:
     runtime: docker
     plan: free
     envVars:
+      # --- Networking & Core ---
       - key: PORT
-        value: "8080"  # Changed from 8080
+        value: "8080"
       - key: ZEROCLAW_GATEWAY_PORT
-        value: "8080"  # Changed from 8081
-      # ... rest of your config
+        value: "8080"
       - key: ZEROCLAW_GATEWAY_ALLOW_PUBLIC_BIND
         value: "true"
+      - key: ZEROCLAW_GATEWAY_REQUIRE_PAIRING
+        value: "false"
 
-      # --- Primary Brain (Gemini) ---
+      # --- AI Provider Fix (Bypass 429 entirely) ---
+      # Groq is promoted to Primary to handle the intense Agent Loop
       - key: ZEROCLAW_DEFAULT_PROVIDER
-        value: "google"
+        value: "groq"
       - key: ZEROCLAW_DEFAULT_MODEL
-        value: "gemini-2.0-flash"
-      - key: ZEROCLAW_API_KEY
-        sync: false
-
-      # --- Multi-Provider Fallback Chain ---
-      - key: ZEROCLAW_RELIABILITY_FALLBACK_PROVIDERS
-        value: '["groq", "openrouter", "openai"]'
-
-      # --- Defining the Backup Models ---
-      - key: ZEROCLAW_RELIABILITY_FALLBACK_MODELS
-        value: '{"groq": "llama-3.3-70b-specdec", "openrouter": "anthropic/claude-3.5-sonnet", "openai": "gpt-4o-mini"}'
-
-      # --- API Keys for All Providers ---
+        value: "llama-3.3-70b-specdec"
+      
+      # --- API Keys (Matching official docs spec) ---
       - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
         sync: false
       - key: OPENROUTER_API_KEY
         sync: false
       - key: OPENAI_API_KEY
         sync: false
 
-      # --- Reliability Rules ---
-      - key: ZEROCLAW_RELIABILITY_RETRIES
-        value: "3"
-      - key: ZEROCLAW_RELIABILITY_BACKOFF_MS
-        value: "1000"
-
-      # --- Telegram Integration --
-      - key: TELEGRAM_BOT_TOKEN
-        sync: false
+      # --- Channels ---
+      # --- Telegram Integration ---
       - key: ZEROCLAW_CHANNELS_TELEGRAM_ENABLED
         value: "true"
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ZEROCLAW_CHANNELS_TELEGRAM_ALLOWED_USERS
+        value: '["*"]' # Allows anyone to message the bot. Replace "*" with your Telegram username for privacy.
